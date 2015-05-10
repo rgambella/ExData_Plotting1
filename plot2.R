@@ -37,7 +37,7 @@ Sys.setlocale("LC_TIME", "English")
 # The plot 2 is a scatterplot of Global Active Power and Time.
 
 # Open the png device.
-png(file = "plot2.png")
+png(file = "plot2.png", width = 480, height = 480, units = "px")
 
 # Make the scatterplot.
 plot(y = electricPowerConsumption$Global_active_power,

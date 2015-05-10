@@ -34,7 +34,7 @@ save(electricPowerConsumption, file = "electricPowerConsumption.RData")
 # The plot 1 is an histogram of Global Active Power.
 
 # Open the png device.
-png(file = "plot1.png")
+png(file = "plot1.png", width = 480, height = 480, units = "px")
 
 # Make the histogram.
 hist(electricPowerConsumption$Global_active_power, col = "red",

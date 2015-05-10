@@ -34,16 +34,31 @@ save(electricPowerConsumption, file = "electricPowerConsumption.RData")
 # Change Locale to set English language.
 Sys.setlocale("LC_TIME", "English")
 
-# The plot 3 is a scatterplot of Energy Sub Metering over time.
-# There is the need of three different colors for each variable.
-# I use black for Sub_metering_1, red for Sub_Metering_2 and
-# blue for Sub_Metering_3.
-
+# The plot 4 is a combination of 4 scatterplots.
 
 # Open the png device.
-png(file = "plot3.png", width = 480, height = 480, units = "px")
+png(file = "plot4.png", width = 480, height = 480, units = "px")
 
-# Make the scatterplot.
+# Set mfrow and margins
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+
+# First plot: Global active power.
+plot(y = electricPowerConsumption$Global_active_power,
+     x = electricPowerConsumption$Time,
+     xlab = "",
+     ylab = "Global Active Power",
+     type = "l")
+
+
+# Second plot: Voltage.
+plot(y = electricPowerConsumption$Voltage,
+     x = electricPowerConsumption$Time,
+     xlab = "datetime",
+     ylab = "Voltage",
+     type = "l")
+
+
+# Third Plot: Energy sub metering.
 # Generate plot base.
 plot(x = electricPowerConsumption$Time,
      y = electricPowerConsumption$Sub_metering_1,
@@ -70,6 +85,14 @@ points(x = electricPowerConsumption$Time,
 legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), 
        col = c("black", "red", "blue"), box.col="darkgreen", 
        lty = c(1, 1, 1), bty = "o", cex=1, )
+
+
+# Fourth plot: Global reactive power
+plot(y = electricPowerConsumption$Voltage,
+     x = electricPowerConsumption$Time,
+     xlab = "datetime",
+     ylab = "Global_reactive_power",
+     type = "l")
 
 # Close the png device.
 dev.off()
