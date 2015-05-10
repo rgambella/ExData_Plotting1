@@ -21,7 +21,7 @@ electricPowerConsumption <- subset(electricPowerConsumption,
 
 # Convert Time in time format.
 electricPowerConsumption$Time <- as.POSIXct(paste(as.character(electricPowerConsumption$Date), 
-                                                  electricPowerConsumption$Time), format="%Y-%m-%d %H:%M:%S")
+    electricPowerConsumption$Time), format="%Y-%m-%d %H:%M:%S")
 
 # Save extracted data frame in an object for later uses.
 save(electricPowerConsumption, file = "electricPowerConsumption.RData")
@@ -31,15 +31,20 @@ save(electricPowerConsumption, file = "electricPowerConsumption.RData")
 # Manage plot section
 #
 
-# The plot 1 is an histogram of Global Active Power.
+# Change Locale to set English language.
+Sys.setlocale("LC_TIME", "English")
+
+# The plot 2 is a scatterplot of Global Active Power and Time.
 
 # Open the png device.
-png(file = "plot1.png")
+png(file = "plot2.png")
 
-# Make the histogram.
-hist(electricPowerConsumption$Global_active_power, col = "red",
-     xlab = "Global Active Power (kilowatts)",
-     main = "Global Active Power")
+# Make the scatterplot.
+plot(y = electricPowerConsumption$Global_active_power,
+     x = electricPowerConsumption$Time,
+     xlab = "",
+     ylab = "Global Active Power (kilowatts)",
+     type = "l")
 
 # Close the png device.
 dev.off()
